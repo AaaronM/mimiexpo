@@ -16,9 +16,25 @@ const calculatePrice = (kgs) => {
 
 export default function UsToAm() {
   const [selectedValue, setSelectedValue] = useState("0");
+  const maxValue = 1999;
 
   const handleValueChange = (event) => {
-    setSelectedValue(event.target.value);
+    let value = event.target.value;
+
+    value = value.replace(/[^\d.]/g, '');
+
+    value = value.replace(/^0+(?=\d)/, '');
+
+    const decimalCount = (value.match(/\./g) || []).length;
+    if (decimalCount > 1) {
+      return;
+    }
+
+    if (/^-?\d+(\.\d{0,2})?$/.test(value) && parseFloat(value) <= maxValue) {
+      setSelectedValue(value);
+    } else {
+      setSelectedValue("0");
+    }
   };
 
   return (
