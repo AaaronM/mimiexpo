@@ -1,27 +1,42 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Poppins:wght@300;400;600&display=swap);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
+.btn {
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    92.23deg,
+    #e13346 21.43%,
+    #e13346 50.63%,
+    #e13346 100%,
+    #e13346 117.04%
+  );
+  box-shadow: 0px 4.42184px 107.23px rgba(255, 86, 246, 0.51);
+}
+
+.btn:hover {
+  background: linear-gradient(
+    92.23deg,
+    #e13346 21.43%,
+    #e13346 50.63%,
+    #e13346 100%,
+    #e13346 117.04%
+  );
+}
+
+.gradient,
+.active {
+  background: linear-gradient(
+    92.23deg,
+    #e13346 21.43%,
+    #e13346 50.63%,
+    #e13346 100%,
+    #e13346 117.04%
+  );
+}
+
+.active {
+  color: #170505;
+  padding: 1rem;
+  border-radius: 100%;
 }
