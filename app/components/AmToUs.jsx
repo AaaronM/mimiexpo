@@ -23,24 +23,20 @@ const calculatePrice = (kgs) => {
 
 export default function AmToUs() {
   const [selectedValue, setSelectedValue] = useState("0");
-  const maxValue = 999;
+  const maxValue = 1999;
 
   const handleValueChange = (event) => {
     let value = event.target.value;
 
-    // Remove non-digit characters except decimal point
     value = value.replace(/[^\d.]/g, '');
 
-    // Remove leading zeros
     value = value.replace(/^0+(?=\d)/, '');
 
-    // Ensure there is at most one decimal point
     const decimalCount = (value.match(/\./g) || []).length;
     if (decimalCount > 1) {
       return;
     }
 
-    // Check if the input is a valid number with up to 2 decimal places
     if (/^-?\d+(\.\d{0,2})?$/.test(value) && parseFloat(value) <= maxValue) {
       setSelectedValue(value);
     } else {
