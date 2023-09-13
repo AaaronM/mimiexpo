@@ -4,9 +4,9 @@ import UsToAm from "./UsToAm";
 
 export default function DeliveryPrices() {
   return (
-    <div>
+    <div className="md:mx-0 mx-8">
       <div
-        className=" h-screen flex flex-row justify-center items-center gap-20 mt-[-200px]"
+        className="h-screen flex flex-col gap-10 md:flex-row md:justify-center md:items-center md:gap-20 mt-[-200px]"
         id="calculator"
       >
         <div className=" flex flex-col text-center">

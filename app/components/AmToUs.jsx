@@ -8,68 +8,75 @@ import USAflag from "../IMG/final/flagUSA.png";
 import AMflag from "../IMG/final/flagAM.svg.png";
 import Image from "next/image";
 
-const options = [
-  {
-    label: "Option1",
-    value: "option1",
-    price: "$100",
-  },
-  {
-    label: "Option1",
-    value: "option2",
-    price: "$200",
-  },
-  {
-    label: "ption1",
-    value: "option3",
-    price: "$300",
-  },
-];
+const calculatePrice = (kgs) => {
+  let result;
+  if (kgs >= 1 && kgs <= 3) {
+    result = kgs * 6000
+  } else if (kgs > 3 && kgs <= 100) {
+    result = kgs * 4800
+  } else {
+    result = kgs * 4200
+  }
+
+  return result.toFixed(1);
+}
 
 export default function AmToUs() {
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState("0");
+  const maxValue = 999;
 
   const handleValueChange = (event) => {
-    setSelectedValue(event.target.value);
+    let value = event.target.value;
+
+    // Remove non-digit characters except decimal point
+    value = value.replace(/[^\d.]/g, '');
+
+    // Remove leading zeros
+    value = value.replace(/^0+(?=\d)/, '');
+
+    // Ensure there is at most one decimal point
+    const decimalCount = (value.match(/\./g) || []).length;
+    if (decimalCount > 1) {
+      return;
+    }
+
+    // Check if the input is a valid number with up to 2 decimal places
+    if (/^-?\d+(\.\d{0,2})?$/.test(value) && parseFloat(value) <= maxValue) {
+      setSelectedValue(value);
+    } else {
+      setSelectedValue("0");
+    }
   };
+
   return (
     <div>
-      <div
-        className="flex flex-col justify-center items-center gap-20  border-4 border-pdark p-10 rounded-3xl 
-      
-      "
-      >
-        <div className="  flex flex-row  justify-center items-center gap-10">
+      <div className="flex flex-col justify-center items-center gap-20  border-4 border-pdark p-10 rounded-3xl">
+        <div className="flex flex-row  justify-center items-center gap-10">
           <Image
             src={AMflag}
             className=" w-[80px] h-[80px] object-cover rounded-full "
+            alt="Armenia Flag"
           ></Image>
           <AiOutlineArrowRight className=" text-[35px] text-pdark" />
           <Image
             src={USAflag}
-            className=" w-[80px] h-[80px] object-cover rounded-full "
+            className=" w-[80px] h-[80px] object-cover rounded-full"
+            alt="USA Flag"
           ></Image>
         </div>
         {/* <h3 className=" text-[42px] text-pred">Գնացուցակ</h3> */}
-        <select
-          value={selectedValue}
-          onChange={handleValueChange}
-          className=" w-[200px]  h-[60px] bg-pred rounded-3xl text-center text-[30px] text-light"
-        >
-          <option value="option1">1 կգ</option>
-          <option value="option2">2 կգ</option>
-          <option value="option3">3 կգ</option>
-        </select>
+        <div className="flex flex-row items-center gap-5">
+          <input
+            className="w-[200px] h-[60px] bg-pred rounded-3xl text-center text-[30px] text-light"
+            type="number"
+            max="100"
+            value={selectedValue}
+            onChange={handleValueChange}
+          ></input>
+          <p className="text-xl">կգ</p>
+        </div>
 
-        {selectedValue === "option1" && (
-          <div className=" text-pred text-[42px]">֏1000</div>
-        )}
-        {selectedValue === "option2" && (
-          <div className=" text-pred text-[42px]">֏2000</div>
-        )}
-        {selectedValue === "option3" && (
-          <div className=" text-pred text-[42px]">֏3000</div>
-        )}
+        <div className="text-pred text-[42px]">֏{calculatePrice(selectedValue)}</div>
       </div>
     </div>
   );
