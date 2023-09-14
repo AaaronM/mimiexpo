@@ -15,12 +15,12 @@ export default function Hero() {
             className=" h-[800px] w-[800px] object-cover  "
           />
         </div>
-        <div>
+        {/* <div>
           <Image
             src={heroGuy}
             className="  w-[800px] bg-pred rounded-full object-cover  "
           />
-        </div>
+        </div> */}
       </div>
     </section>
   );
