@@ -11,11 +11,11 @@ import Image from "next/image";
 const calculatePrice = (kgs) => {
   let result;
   if (kgs >= 1 && kgs <= 3) {
-    result = kgs * 6000
+    result = Math.ceil(kgs) * 6000
   } else if (kgs > 3 && kgs <= 100) {
-    result = kgs * 4800
+    result = Math.ceil(kgs) * 4800
   } else {
-    result = kgs * 4200
+    result = Math.ceil(kgs) * 4200
   }
 
   return result.toFixed(1);

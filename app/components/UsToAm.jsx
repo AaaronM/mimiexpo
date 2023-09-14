@@ -9,7 +9,7 @@ import AMflag from "../IMG/final/flagAM.svg.png";
 import Image from "next/image";
 
 const calculatePrice = (kgs) => {
-  let result = kgs * 8.8;
+  let result = Math.ceil(kgs) * 8.8;
 
   return result.toFixed(1);
 };
