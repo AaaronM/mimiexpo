@@ -8,19 +8,21 @@ import heroGuy from "../IMG/final/heroGuy.png";
 export default function Hero() {
   return (
     <section className="" id="home">
-      <div className=" flex justify-center items-center h-screen overflow-hidden relative p-10">
+      <div className=" h-screen flex justify-center items-center  overflow-hidden relative mb-[100px] md:p-10">
         <div>
           <Image
             src={logoBigRed}
             className=" h-[800px] w-[800px] object-cover  "
+            alt="logoBigRed"
           />
         </div>
-        {/* <div>
+        <div>
           <Image
             src={heroGuy}
-            className="  w-[800px] bg-pred rounded-full object-cover  "
+            className=" hidden  md:w-[800px] md:bg-pred md:rounded-full md:object-cover  "
+            alt="heroGuy"
           />
-        </div> */}
+        </div>
       </div>
     </section>
   );
